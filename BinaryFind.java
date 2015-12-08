@@ -1,4 +1,4 @@
-/**
+﻿/**
 *	this program run base on JVM, but algorithm actually used C data structure
 */ 
  
@@ -11,7 +11,7 @@ public static void main(String[] args) {
 	BinaryFind(111,0,25);
 }
 /**
- * 二进制查找
+ * 二分查找
  * @param key
  */
 public static void BinaryFind(int key,int start,int end)
