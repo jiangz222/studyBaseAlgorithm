@@ -66,6 +66,11 @@ static void normalQuickSort(int start, int end)
 	{
 		if(chaosArray[i]< keyCompareElement)
 		{// 如果比keyvalue小，与wherePutNextElement加1后交换
+	   	// 注意，swap的是++wherePutNextElement，第一个元素是一直没有移动的，直到最后跳出for了才swap
+			// 比如 13 22 23 9 10
+			// 在这里第一次swap后，应该是 13 9 23 22 10，是9和22 swap，而不是9和13 swap
+			// 这样做，逻辑上，即第一个13就是key，先不放入比较队列，等队列做完一次比较，再把key放入队列的分割点
+			// 如果13和9一开始就互换，那么13就出现在比较队列里了
 			swapElement(++wherePutNextElement,i);
 		}
 		// 如果比keyvalue大，不需要移动
