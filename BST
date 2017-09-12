@@ -1,0 +1,199 @@
+reverseLinkList(LinkList p)
+{
+	firstNode = head = p;
+	secondNode = firstNode->next;
+	if(secondNode == null) return p;
+	firstNode->next = null;
+	if(secondNode->next == null) 
+	{
+		secondNode->next = firstNode;
+		return secondNode;		
+	}
+	while(secondNode->next != null)
+	{
+		thirdNode = secondNode->next;
+		secondNode->next = firstNode;
+		firstNode = secondNode;
+		secondNode = thirdNode;
+		
+	}
+	return secondNode;
+}
+//二叉树node数量
+int GetNodeNumber(BinaryTree *p)
+{
+	if(p ！= null) return 0;
+	return GetNodeNumber(p->left)+GetNodeNumber(p->right)+1;
+}
+//	求二叉树深度
+int getDepOfBinaryTree(BinaryTree *p)
+{
+	if(p == null) return 0;
+	
+	int depLeft = getDepOfBinaryTree(p->left);
+	int depRight = getDepOfBinaryTree(p->right);
+	
+	return MAX(depLeft,depRight) + 1;
+
+}
+//二叉树遍历方法
+PreOderTraverse(TreeNode *p)
+{
+	if(p != null)
+	{
+		PrintOut(p->data);
+		PreOderTraverse(p->left);
+		PreOderTraverse(p->right);
+	}
+	return;
+}
+InOderTraverse(TreeNode *p)
+{
+	if(p != null)
+	{
+		InOderTraverse(p->left);
+		PrintOut(p->data);
+		InOderTraverse(p->right);
+	}
+
+	return;
+}
+// need a called to remember the most left node as head
+BinaryTreeToTwoDirectionLinkList(TreeNode *p)
+{
+	if(p != null)
+	{
+		BinaryTreeToTwoDirectionLinkList(p->left);
+		if(lastNode == null)
+		{// first one,init lastnode
+			 lastNode = p;
+			 lastNode->left = null;
+		}else{
+		p->left = lastNode;
+		lastNode->right = p;
+		lastNode = p;
+		}//PrintOut(p->data);
+		BinaryTreeToTwoDirectionLinkList(p->right);
+	}
+
+	return;
+}
+PostOderTraverse(TreeNode *p)
+{
+	if(p != null)
+	{
+		PostOderTraverse(p->left);
+		PostOderTraverse(p->right);
+		PrintOut(p->data);
+
+	}
+	return;
+}
+// 分层遍历，用到一个先入先出队列，保证相邻的LEFT和RIGHT能够先后入队，也先后出队
+levelTraverse(TreeNode *p)
+{
+	Queue<TreeNode> queue；
+	queue.push(p)；
+	while(!p.empty())
+	{
+		TreeNode *tmp = p.pop;
+		PrintOut(tmp);
+		//left要在前面
+		if(tmp->left != null)
+		{
+			p.push(tmp->left);
+		}
+		if(tmp->right!=null)
+		{
+			p.push(tmp->right);
+		}
+	}
+}
+int countNumbersOfLeafNode(TreeNode *p)
+{
+	if(p == null) return 0;
+	if(p->left == null && p->right == null) return 1;
+	return ((countNumbersOfLeafNode(p->left) + countNumbersOfLeafNode(p->right));
+}
+int countKlevelNumbersOfNode(TreeNode *p,int k)
+{
+	if(p == null || k<1) return 0;
+	if(k == 1) return 1;
+	return ((countKlevelNumbersOfNode(p->left,k-1) + countKlevelNumbersOfNode(p->right,k-1));
+}
+bool compareIfTreeStructIsSame(Tree *p1,Tree *p2)
+{
+	if(p1 == null & p2 == null)
+	{// same struct in this path
+		return true;
+	}
+	if(p1 == null || p2 == null)
+	{
+		return false;
+	}	
+	leftreslt = compareIfTreeStructIsSame(p1->left,p2->left);
+	rightrslt = compareIfTreeStructIsSame(p1->right,p2->right);
+	return leftreslt + rightrslt;
+
+}
+bool IfBinaryTreeIsAVLTree(Tree *p,int *hight)
+{
+	if(p == NULL) 
+	{
+		*hight = 0;
+		return true;
+	}
+	bool leftAVL = IfBinaryTreeIsAVLTree(p->left,&leftHight);
+	bool rightAVL = IfBinaryTreeIsAVLTree(p->right, &rightHight);
+	if(leftAVL && rightAVL && abs(leftAVL - rightAVL)<2)
+	{
+		*hight = max(leftHight,rightHight)+1;
+		return true;
+	}else
+	{
+		*hight = max(leftHight,rightHight)+1;
+		return false;
+	} 
+}
+void mirror(TreeNode *p)
+{
+	if(p == NULL) return;
+	mirror(p->left);
+	mirror(p->right);
+    //SWAPLeftRightPoint(p);
+	TreeNode *tmp = p->left;
+	p->left = p->right;
+	p->right = tmp;
+}
+int maxLenth=0;
+int getMaxDistanceOfTwoNode(Treenode *p,*maxLeft,*maxRight)
+{
+	if(p == null)
+	{
+		*maxLeft = 0;
+		*maxRight = 0;
+		return 0;
+	}	
+	int maxL = 0;//左子树到根节点的最大距离
+	int maxR = 0;//右子树到根节点的最大距离
+	LeftDist = getMaxDistanceOfTwoNode(p->left,&maxL,&maxR);
+	*maxLeft = MAX(maxL,maxR) + 1;
+	RightDist = getMaxDistanceOfTwoNode(p->right,&maxL,&maxR);
+	*maxRight = MAX(maxL,maxR) + 1;
+
+	return max(LeftDist,RightDist,*maxLeft+*maxRight);
+}
+// R tree旋转
+singRotateLeft(Root)
+{
+	newRoot = Root->left;
+	Root->left = newRoot->right;
+    newRoot->right = Root;
+}
+
+singRotateRight(Root)
+{
+	newRoot = Root->right;
+	Root->right = newRoot->left;
+    newRoot->left = Root;
+}
