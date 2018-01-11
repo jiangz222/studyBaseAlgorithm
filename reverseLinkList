@@ -1,4 +1,4 @@
-// it is fsdfdsf
+// it is fsdfds it is from masterf
 LinkList * reverseLinkList(LinkList p)
 {
 	firstNode = head = p;
