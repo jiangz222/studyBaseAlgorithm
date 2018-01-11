@@ -1,3 +1,4 @@
+// it is fsdfdsf
 LinkList * reverseLinkList(LinkList p)
 {
 	firstNode = head = p;
