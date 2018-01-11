@@ -1,4 +1,5 @@
  // it is fsdfdsf  from dec
+// it is fsdfds it is from masterf
 LinkList * reverseLinkList(LinkList p)
 {
 	firstNode = head = p;
