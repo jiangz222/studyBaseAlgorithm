@@ -2,8 +2,10 @@
 // it is fsdfds it is from masterf
 // it is fdsfa from dev again
 // it is from testbranch
+// make a conflict
 // it is fdsfa from dev once more
 i// changes in dev
+// add changes in dev in github
 LinkList * reverseLinkList(LinkList p)
 {
 	firstNode = head = p;
